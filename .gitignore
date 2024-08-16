@@ -1,0 +1,12 @@
+/Debug
+/Release
+/.vscode
+/.vs
+/*.suo
+/*.sdf
+/*.opensdf
+/out
+/*.VC.db
+/*.VC.VC.opendb
+/*.user
+/ipch
