@@ -10,9 +10,13 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#endif
 
+#ifndef _CRT_SECURE_NO_WARNINGS 
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 
 #include <atlbase.h>
 

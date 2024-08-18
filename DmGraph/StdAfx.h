@@ -13,9 +13,14 @@
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0500	// Windows 2000 and later
 #endif
-#define _ATL_APARTMENT_THREADED
 
+#ifndef _ATL_APARTMENT_THREADED
+#define _ATL_APARTMENT_THREADED
+#endif
+
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 
 #include <atlbase.h>
 //You may derive a class from CComModule and use it if you want to override

@@ -89,8 +89,11 @@ void CGraphDataDlg::FillListView(CPointData** parrPoints, int cbSize, LPCOLESTR 
 	LVCOLUMN lvCol;
 	USES_CONVERSION;
 	lvCol.mask		= LVCF_SUBITEM | LVCF_TEXT;
-
-	lvCol.pszText	= OLE2T(szName);
+#if defined(_UNICODE)
+	lvCol.pszText = OLE2W((LPOLESTR)szName);
+#else
+	lvCol.pszText = OLE2T(szName);
+#endif
 	lvCol.iSubItem	= 1;
 	SendDlgItemMessage(IDC_LIST_POINTS, LVM_SETCOLUMN, 1, (LPARAM)&lvCol);
 }
