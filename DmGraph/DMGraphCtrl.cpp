@@ -2405,8 +2405,9 @@ LRESULT CDMGraphCtrl::OnRButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 //
 LRESULT CDMGraphCtrl::OnLButtonDblClk(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
+#if defined(_DEBUG)
 	DoVerbProperties(NULL, GetParent());
-	
+#endif
 	bHandled = FALSE;
 	return 0;
 }
