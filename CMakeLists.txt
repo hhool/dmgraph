@@ -5,10 +5,14 @@ project(DMGraphCtrl CXX)
 set(CMAKE_CXX_STANDARD 14)
 
 # set output directory
+message(STATUS "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
+message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
+
 if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_PDB_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif()
 
 # process CMAKE_BUILD_TYPE
@@ -106,6 +110,14 @@ set_target_properties(DMGraph PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 
 # add custom command to generate tlb file
 add_custom_target(DMGraphTlb DEPENDS ${MIDL_OUTPUT})
+
+# copy library to bin directory
+# not equal means this is the root project
+if(NOT CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    add_custom_command(TARGET DMGraph POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE}/dmgraph.dll ${CMAKE_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}/dmgraph.dll)
+endif()
 
 # ##############################################################################
 # build DMGraphTest
