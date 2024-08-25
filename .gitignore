@@ -10,3 +10,6 @@
 /*.VC.VC.opendb
 /*.user
 /ipch
+/DmGraph/DMGraph.h
+/DmGraph/DMGraph.tlb
+/DmGraph/DMGraph_i.c
