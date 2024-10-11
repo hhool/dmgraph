@@ -4,6 +4,10 @@ project(DMGraphCtrl CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 
+option(USE_UNICODE "Use unicode" ON)
+option(USE_SHARED "Use shared library" ON)
+option(BUILD_EXAMPLES "Build examples" ON)
+
 # set output directory
 message(STATUS "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
 message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
